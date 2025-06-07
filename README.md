@@ -54,11 +54,7 @@ test1またはtest2を実行する.
 
 ### 速度をテストする場合
 
-1. [resources](resources)ディレクトリに以下のあら氏のテストケース[^3]を格納する.
-   - p_normal_10000.txt
-   - p_hon_10000.txt
-   - p_tin_10000.txt
-   - p_koku_10000.txt
+1. [resources](resources)ディレクトリに以下のあら氏のテストケース(`p_normal_10000.txt`, `p_hon_10000.txt`, `p_tin_10000.txt`, `p_koku_10000.txt`)を格納する[^3].
 2. test3を実行する.
 
 実行例(@m5zn.2xlarge):
