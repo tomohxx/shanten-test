@@ -1,5 +1,29 @@
 # Shanten Test
 
+ブロック分解方式の向聴数(シャンテン数)計算アルゴリズムの修正案とテスト.
+
+## 修正案
+
+[麻雀C言語プログラム集](https://web.archive.org/web/20190616213620/http://cmj3.web.fc2.com/)に記載のアルゴリズムをベースに孤立牌不足に対応できるように修正する.
+
+- 4枚使いを双碰待ち(シャンポン待ち・シャボ待ち)とみなさい.
+- 孤立牌不足になり得る手牌では孤立牌を数える.
+- 枝刈りを導入して高速化する.
+
+## 性能
+
+### :+1: 正確
+
+13枚と14枚の手牌で正確に向聴数を計算できることをテスト済.
+
+### :+1: 高速
+
+一手当たりの計算速度は1μs - 2μs.
+
+### :+1: 省メモリ
+
+計算済テーブルを使用しない.
+
 ## ビルド
 
 事前に[shanten-number](https://github.com/tomohxx/shanten-number)をインストールしておく.
@@ -30,14 +54,27 @@ test1またはtest2を実行する.
 
 ### 計算速度を測定する場合
 
-1. [resources](resources)にあら氏のテストケース[^3]を格納する.
-     - p_normal_10000.txt
-     - p_hon_10000.txt
-     - p_tin_10000.txt
-     - p_koku_10000.txt
+1. [resources](resources)ディレクトリに以下のあら氏のテストケース[^3]を格納する.
+   - p_normal_10000.txt
+   - p_hon_10000.txt
+   - p_tin_10000.txt
+   - p_koku_10000.txt
 2. test3を実行する.
+    実行例(@m5zn.2xlarge):
+    ```
+    $ ./test3
+    [normal] 14 msec.
+    [tinitu] 38 msec.
+    [honitu] 17 msec.
+    [kokusi] 10 msec.
+    ```
 
 [^3]: https://mahjong.ara.black/etc/shanten/shanten9.htm から入手する.
+
+## 参考
+
+- https://zenn.dev/tomohxx/articles/aecace4e3a3bc1 (孤立牌不足について)
+- https://github.com/tomohxx/shanten-number (より高速な向聴数計算ツール)
 
 ## ライセンス
 
