@@ -52,7 +52,7 @@ $ make
 
 test1またはtest2を実行する.
 
-### 計算速度を測定する場合
+### 速度をテストする場合
 
 1. [resources](resources)ディレクトリに以下のあら氏のテストケース[^3]を格納する.
    - p_normal_10000.txt
@@ -61,14 +61,14 @@ test1またはtest2を実行する.
    - p_koku_10000.txt
 2. test3を実行する.
 
-    実行例(@m5zn.2xlarge):
-    ```
-    $ ./test3
-    [normal] 14 msec.
-    [tinitu] 38 msec.
-    [honitu] 17 msec.
-    [kokusi] 10 msec.
-    ```
+実行例(@m5zn.2xlarge):
+```
+$ ./test3
+[normal] 14 msec.
+[tinitu] 38 msec.
+[honitu] 17 msec.
+[kokusi] 10 msec.
+```
 
 [^3]: https://mahjong.ara.black/etc/shanten/shanten9.htm から入手する.
 
