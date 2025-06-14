@@ -24,6 +24,4 @@ target_compile_definitions(test2
   PUBLIC NUM_THREADS=15)
 
 add_executable(test3 src/test3.cpp)
-target_include_directories(test3 PUBLIC $ENV{HOME}/local/include)
-target_link_libraries(test3 shanten calsht)
-target_compile_definitions(test3 PUBLIC INDEX_FILE_PATH="$ENV{HOME}/local/share/data")
+target_link_libraries(test3 shanten)
