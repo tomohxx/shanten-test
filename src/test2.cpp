@@ -78,8 +78,6 @@ int main()
 
   Table1 table1{};
 
-  table1[NUM_TIDS][NUM_TILES] = 1ull;
-
   build_table1(table1);
 
   const uint64_t num_hands = table1[0][0];
