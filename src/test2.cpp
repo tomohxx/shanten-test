@@ -1,17 +1,15 @@
 #include "shanten.hpp"
 #include <array>
-#include <calsht.hpp>
-#include <cassert>
 #include <chrono>
 #include <functional>
 #include <iostream>
+#include <mahjong/calsht.hpp>
 #include <thread>
 #include <vector>
 #ifndef NUM_THREADS
 #define NUM_THREADS 8
 #endif
 static_assert(NUM_THREADS > 0);
-constexpr int MAX_TIDS = 34;
 constexpr int NUM_TIDS = 34;
 constexpr int NUM_TILES = 13;
 // constexpr int NUM_TILES = 14;
@@ -33,9 +31,9 @@ void build_table1(Table1& tbl1)
   }
 }
 
-std::vector<int> decode(const uint64_t hash, const Table1& tbl1)
+std::array<int, NUM_TIDS> decode(const uint64_t hash, const Table1& tbl1)
 {
-  std::vector<int> hand(MAX_TIDS);
+  std::array<int, NUM_TIDS> hand;
   uint64_t h = 0ull;
   unsigned int n = 0u;
 
@@ -57,14 +55,16 @@ std::vector<int> decode(const uint64_t hash, const Table1& tbl1)
   return hand;
 }
 
-void test(uint64_t begin, const uint64_t end, const Table1& table1, const Calsht& calsht)
+void test(uint64_t begin, const uint64_t end, const Table1& table1, const mahjong::Calsht& calsht)
 {
   for (; begin < end; ++begin) {
     auto hand = decode(begin, table1);
     const auto [sht, mode] = calsht(hand, NUM_TILES / 3, MODE);
     const auto shanten = calc_shanten(hand, NUM_CALLS);
 
-    assert(sht - 1 == shanten);
+    if (sht - 1 != shanten) {
+      exit(EXIT_FAILURE);
+    }
   }
 }
 
@@ -72,9 +72,7 @@ int main()
 {
   std::cout << "Number of threads: " << NUM_THREADS << std::endl;
 
-  Calsht calsht;
-
-  calsht.initialize(INDEX_FILE_PATH);
+  mahjong::Calsht calsht(INDEX_FILE_PATH);
 
   Table1 table1{};
 

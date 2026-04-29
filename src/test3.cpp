@@ -1,4 +1,5 @@
 #include "shanten.hpp"
+#include <array>
 #include <cassert>
 #include <chrono>
 #include <fstream>
@@ -8,7 +9,7 @@
 constexpr int NUM_TIDS = 34;
 constexpr int NUM_TILES = 14;
 constexpr size_t NUM_RECORDS = 10000u;
-using HandShanten = std::pair<std::vector<int>, int>;
+using HandShanten = std::pair<std::array<int, NUM_TIDS>, int>;
 
 void read(std::vector<HandShanten>& hand_shanten, std::ifstream& fin)
 {
@@ -42,7 +43,7 @@ int main()
 
     if (!fin) return EXIT_FAILURE;
 
-    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::vector<int>(NUM_TIDS, 0), 0}};
+    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::array<int, NUM_TIDS>{}, 0}};
 
     read(hand_shanten, fin);
 
@@ -60,7 +61,7 @@ int main()
 
     if (!fin) return EXIT_FAILURE;
 
-    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::vector<int>(NUM_TIDS, 0), 0}};
+    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::array<int, NUM_TIDS>{}, 0}};
 
     read(hand_shanten, fin);
 
@@ -78,7 +79,7 @@ int main()
 
     if (!fin) return EXIT_FAILURE;
 
-    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::vector<int>(NUM_TIDS, 0), 0}};
+    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::array<int, NUM_TIDS>{}, 0}};
 
     read(hand_shanten, fin);
 
@@ -96,7 +97,7 @@ int main()
 
     if (!fin) return EXIT_FAILURE;
 
-    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::vector<int>(NUM_TIDS, 0), 0}};
+    std::vector<HandShanten> hand_shanten{NUM_RECORDS, {std::array<int, NUM_TIDS>{}, 0}};
 
     read(hand_shanten, fin);
 

@@ -35,33 +35,33 @@ bool is_honor(int index)
   return !is_suit(index);
 }
 
-void cut_meld(std::vector<int>& hand,
-              const std::vector<int>& original,
+void cut_meld(std::array<int, NUM_TIDS>& hand,
+              const std::array<int, NUM_TIDS>& original,
               Result& result,
               int& min_shanten,
               int pos_pair,
               int tid);
-void cut_premeld(std::vector<int>& hand,
-                 const std::vector<int>& original,
+void cut_premeld(std::array<int, NUM_TIDS>& hand,
+                 const std::array<int, NUM_TIDS>& original,
                  Result& result,
                  int& min_shanten,
                  int pos_pair,
                  int tid,
                  int lower_bound);
-void cut_single_tile_for_pair(std::vector<int>& hand,
-                              const std::vector<int>& original,
+void cut_single_tile_for_pair(std::array<int, NUM_TIDS>& hand,
+                              const std::array<int, NUM_TIDS>& original,
                               Result& result,
                               int& min_shanten);
-void cut_single_tile_for_meld(std::vector<int>& hand,
-                              const std::vector<int>& original,
+void cut_single_tile_for_meld(std::array<int, NUM_TIDS>& hand,
+                              const std::array<int, NUM_TIDS>& original,
                               Result& result,
                               int& min_shanten);
-void cut_single_tile_for_pair_and_meld(std::vector<int>& hand,
-                                       const std::vector<int>& original,
+void cut_single_tile_for_pair_and_meld(std::array<int, NUM_TIDS>& hand,
+                                       const std::array<int, NUM_TIDS>& original,
                                        Result& result,
                                        int& min_shanten);
 
-int calc_shanten(std::vector<int>& hand, const int num_calls)
+int calc_shanten(std::array<int, NUM_TIDS>& hand, const int num_calls)
 {
   int min_shanten = MAX_SHANTEN;
   const auto original = hand;
@@ -82,8 +82,8 @@ int calc_shanten(std::vector<int>& hand, const int num_calls)
   return min_shanten;
 }
 
-void cut_meld(std::vector<int>& hand,
-              const std::vector<int>& original,
+void cut_meld(std::array<int, NUM_TIDS>& hand,
+              const std::array<int, NUM_TIDS>& original,
               Result& result,
               int& min_shanten,
               const int pos_pair,
@@ -120,8 +120,8 @@ void cut_meld(std::vector<int>& hand,
   cut_meld(hand, original, result, min_shanten, pos_pair, tid + 1);
 }
 
-void cut_premeld(std::vector<int>& hand,
-                 const std::vector<int>& original,
+void cut_premeld(std::array<int, NUM_TIDS>& hand,
+                 const std::array<int, NUM_TIDS>& original,
                  Result& result,
                  int& min_shanten,
                  const int pos_pair,
@@ -191,8 +191,8 @@ void cut_premeld(std::vector<int>& hand,
   cut_premeld(hand, original, result, min_shanten, pos_pair, tid + 1, lower_bound);
 }
 
-void cut_single_tile_for_pair(std::vector<int>& hand,
-                              const std::vector<int>& original,
+void cut_single_tile_for_pair(std::array<int, NUM_TIDS>& hand,
+                              const std::array<int, NUM_TIDS>& original,
                               Result& result,
                               int& min_shanten)
 {
@@ -207,8 +207,8 @@ void cut_single_tile_for_pair(std::vector<int>& hand,
   min_shanten = std::min(min_shanten, calc_shanten(result) + 1);
 }
 
-void cut_single_tile_for_meld(std::vector<int>& hand,
-                              const std::vector<int>& original,
+void cut_single_tile_for_meld(std::array<int, NUM_TIDS>& hand,
+                              const std::array<int, NUM_TIDS>& original,
                               Result& result,
                               int& min_shanten)
 {
@@ -223,8 +223,8 @@ void cut_single_tile_for_meld(std::vector<int>& hand,
   min_shanten = std::min(min_shanten, calc_shanten(result) + 1);
 }
 
-void cut_single_tile_for_pair_and_meld(std::vector<int>& hand,
-                                       const std::vector<int>& original,
+void cut_single_tile_for_pair_and_meld(std::array<int, NUM_TIDS>& hand,
+                                       const std::array<int, NUM_TIDS>& original,
                                        Result& result,
                                        int& min_shanten)
 {
